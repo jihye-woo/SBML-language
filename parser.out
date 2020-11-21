@@ -1,0 +1,3095 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> blocks
+Rule 2     blocks -> blocks block
+Rule 3     blocks -> block
+Rule 4     block -> LCURLY statements RCURLY
+Rule 5     block -> LCURLY RCURLY
+Rule 6     statements -> statements statement
+Rule 7     statements -> statement
+Rule 8     statement -> WHILE paren block
+Rule 9     condition -> IF paren block
+Rule 10    condition -> IF paren block ELSE block
+Rule 11    statement -> expr SEMI
+Rule 12    statement -> condition
+Rule 13    expr -> VARIABLE EQUALS expr
+Rule 14    expr -> VARIABLE LLIST expr RLIST EQUALS expr
+Rule 15    expr -> VARIABLE LLIST expr RLIST
+Rule 16    expr -> PRINT paren
+Rule 17    expr -> NEGATION expr
+Rule 18    expr -> expr CONJUNCTION expr
+Rule 19    expr -> expr DISJUNCTION expr
+Rule 20    expr -> TRUE
+Rule 21    expr -> FALSE
+Rule 22    expr -> expr COMPARISON expr
+Rule 23    expr -> expr MEMBER expr
+Rule 24    expr -> expr EXPONENT expr
+Rule 25    expr -> expr PLUS expr
+Rule 26    expr -> expr MINUS expr
+Rule 27    expr -> expr TIMES expr
+Rule 28    expr -> expr DIVIDE expr
+Rule 29    expr -> expr INTDIV expr
+Rule 30    expr -> expr MODULUS expr
+Rule 31    paren -> LPAREN expr RPAREN
+Rule 32    expr -> VARIABLE
+Rule 33    expr -> NUMBER
+Rule 34    expr -> STRING
+Rule 35    expr -> list
+Rule 36    expr -> tuple
+Rule 37    expr -> paren
+Rule 38    tuple -> LPAREN listing RPAREN
+Rule 39    expr -> TUPLEINDEXING NUMBER tuple
+Rule 40    list -> LLIST listing RLIST
+Rule 41    list -> LLIST RLIST
+Rule 42    listing -> expr COMMA listing
+Rule 43    listing -> expr
+Rule 44    listing -> expr COMMA
+Rule 45    expr -> expr LLIST expr RLIST
+Rule 46    expr -> expr CONS expr
+
+Terminals, with rules where they appear
+
+COMMA                : 42 44
+COMPARISON           : 22
+CONJUNCTION          : 18
+CONS                 : 46
+DISJUNCTION          : 19
+DIVIDE               : 28
+ELSE                 : 10
+EQUALS               : 13 14
+EXPONENT             : 24
+FALSE                : 21
+IF                   : 9 10
+INTDIV               : 29
+LCURLY               : 4 5
+LLIST                : 14 15 40 41 45
+LPAREN               : 31 38
+MEMBER               : 23
+MINUS                : 26
+MODULUS              : 30
+NEGATION             : 17
+NUMBER               : 33 39
+PLUS                 : 25
+PRINT                : 16
+RCURLY               : 4 5
+RLIST                : 14 15 40 41 45
+RPAREN               : 31 38
+SEMI                 : 11
+STRING               : 34
+TIMES                : 27
+TRUE                 : 20
+TUPLEINDEXING        : 39
+VARIABLE             : 13 14 15 32
+WHILE                : 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+block                : 2 3 8 9 10 10
+blocks               : 1 2
+condition            : 12
+expr                 : 11 13 14 14 15 17 18 18 19 19 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 42 43 44 45 45 46 46
+list                 : 35
+listing              : 38 40 42
+paren                : 8 9 10 16 37
+program              : 0
+statement            : 6 7
+statements           : 4 6
+tuple                : 36 39
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . blocks
+    (2) blocks -> . blocks block
+    (3) blocks -> . block
+    (4) block -> . LCURLY statements RCURLY
+    (5) block -> . LCURLY RCURLY
+
+    LCURLY          shift and go to state 4
+
+    program                        shift and go to state 1
+    blocks                         shift and go to state 2
+    block                          shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> blocks .
+    (2) blocks -> blocks . block
+    (4) block -> . LCURLY statements RCURLY
+    (5) block -> . LCURLY RCURLY
+
+    $end            reduce using rule 1 (program -> blocks .)
+    LCURLY          shift and go to state 4
+
+    block                          shift and go to state 5
+
+state 3
+
+    (3) blocks -> block .
+
+    LCURLY          reduce using rule 3 (blocks -> block .)
+    $end            reduce using rule 3 (blocks -> block .)
+
+
+state 4
+
+    (4) block -> LCURLY . statements RCURLY
+    (5) block -> LCURLY . RCURLY
+    (6) statements -> . statements statement
+    (7) statements -> . statement
+    (8) statement -> . WHILE paren block
+    (11) statement -> . expr SEMI
+    (12) statement -> . condition
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (9) condition -> . IF paren block
+    (10) condition -> . IF paren block ELSE block
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    RCURLY          shift and go to state 7
+    WHILE           shift and go to state 9
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    IF              shift and go to state 24
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    statements                     shift and go to state 6
+    statement                      shift and go to state 8
+    paren                          shift and go to state 10
+    expr                           shift and go to state 11
+    condition                      shift and go to state 12
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 5
+
+    (2) blocks -> blocks block .
+
+    LCURLY          reduce using rule 2 (blocks -> blocks block .)
+    $end            reduce using rule 2 (blocks -> blocks block .)
+
+
+state 6
+
+    (4) block -> LCURLY statements . RCURLY
+    (6) statements -> statements . statement
+    (8) statement -> . WHILE paren block
+    (11) statement -> . expr SEMI
+    (12) statement -> . condition
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (9) condition -> . IF paren block
+    (10) condition -> . IF paren block ELSE block
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    RCURLY          shift and go to state 26
+    WHILE           shift and go to state 9
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    IF              shift and go to state 24
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    statement                      shift and go to state 27
+    paren                          shift and go to state 10
+    expr                           shift and go to state 11
+    condition                      shift and go to state 12
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 7
+
+    (5) block -> LCURLY RCURLY .
+
+    LCURLY          reduce using rule 5 (block -> LCURLY RCURLY .)
+    $end            reduce using rule 5 (block -> LCURLY RCURLY .)
+    RCURLY          reduce using rule 5 (block -> LCURLY RCURLY .)
+    WHILE           reduce using rule 5 (block -> LCURLY RCURLY .)
+    VARIABLE        reduce using rule 5 (block -> LCURLY RCURLY .)
+    PRINT           reduce using rule 5 (block -> LCURLY RCURLY .)
+    NEGATION        reduce using rule 5 (block -> LCURLY RCURLY .)
+    TRUE            reduce using rule 5 (block -> LCURLY RCURLY .)
+    FALSE           reduce using rule 5 (block -> LCURLY RCURLY .)
+    NUMBER          reduce using rule 5 (block -> LCURLY RCURLY .)
+    STRING          reduce using rule 5 (block -> LCURLY RCURLY .)
+    TUPLEINDEXING   reduce using rule 5 (block -> LCURLY RCURLY .)
+    IF              reduce using rule 5 (block -> LCURLY RCURLY .)
+    LLIST           reduce using rule 5 (block -> LCURLY RCURLY .)
+    LPAREN          reduce using rule 5 (block -> LCURLY RCURLY .)
+    ELSE            reduce using rule 5 (block -> LCURLY RCURLY .)
+
+
+state 8
+
+    (7) statements -> statement .
+
+    RCURLY          reduce using rule 7 (statements -> statement .)
+    WHILE           reduce using rule 7 (statements -> statement .)
+    VARIABLE        reduce using rule 7 (statements -> statement .)
+    PRINT           reduce using rule 7 (statements -> statement .)
+    NEGATION        reduce using rule 7 (statements -> statement .)
+    TRUE            reduce using rule 7 (statements -> statement .)
+    FALSE           reduce using rule 7 (statements -> statement .)
+    NUMBER          reduce using rule 7 (statements -> statement .)
+    STRING          reduce using rule 7 (statements -> statement .)
+    TUPLEINDEXING   reduce using rule 7 (statements -> statement .)
+    IF              reduce using rule 7 (statements -> statement .)
+    LLIST           reduce using rule 7 (statements -> statement .)
+    LPAREN          reduce using rule 7 (statements -> statement .)
+
+
+state 9
+
+    (8) statement -> WHILE . paren block
+    (31) paren -> . LPAREN expr RPAREN
+
+    LPAREN          shift and go to state 29
+
+    paren                          shift and go to state 28
+
+state 10
+
+    (37) expr -> paren .
+
+    SEMI            reduce using rule 37 (expr -> paren .)
+    CONJUNCTION     reduce using rule 37 (expr -> paren .)
+    DISJUNCTION     reduce using rule 37 (expr -> paren .)
+    COMPARISON      reduce using rule 37 (expr -> paren .)
+    MEMBER          reduce using rule 37 (expr -> paren .)
+    EXPONENT        reduce using rule 37 (expr -> paren .)
+    PLUS            reduce using rule 37 (expr -> paren .)
+    MINUS           reduce using rule 37 (expr -> paren .)
+    TIMES           reduce using rule 37 (expr -> paren .)
+    DIVIDE          reduce using rule 37 (expr -> paren .)
+    INTDIV          reduce using rule 37 (expr -> paren .)
+    MODULUS         reduce using rule 37 (expr -> paren .)
+    LLIST           reduce using rule 37 (expr -> paren .)
+    CONS            reduce using rule 37 (expr -> paren .)
+    COMMA           reduce using rule 37 (expr -> paren .)
+    RLIST           reduce using rule 37 (expr -> paren .)
+    RPAREN          reduce using rule 37 (expr -> paren .)
+
+
+state 11
+
+    (11) statement -> expr . SEMI
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            shift and go to state 30
+    CONJUNCTION     shift and go to state 31
+    DISJUNCTION     shift and go to state 32
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+
+state 12
+
+    (12) statement -> condition .
+
+    RCURLY          reduce using rule 12 (statement -> condition .)
+    WHILE           reduce using rule 12 (statement -> condition .)
+    VARIABLE        reduce using rule 12 (statement -> condition .)
+    PRINT           reduce using rule 12 (statement -> condition .)
+    NEGATION        reduce using rule 12 (statement -> condition .)
+    TRUE            reduce using rule 12 (statement -> condition .)
+    FALSE           reduce using rule 12 (statement -> condition .)
+    NUMBER          reduce using rule 12 (statement -> condition .)
+    STRING          reduce using rule 12 (statement -> condition .)
+    TUPLEINDEXING   reduce using rule 12 (statement -> condition .)
+    IF              reduce using rule 12 (statement -> condition .)
+    LLIST           reduce using rule 12 (statement -> condition .)
+    LPAREN          reduce using rule 12 (statement -> condition .)
+
+
+state 13
+
+    (13) expr -> VARIABLE . EQUALS expr
+    (14) expr -> VARIABLE . LLIST expr RLIST EQUALS expr
+    (15) expr -> VARIABLE . LLIST expr RLIST
+    (32) expr -> VARIABLE .
+
+  ! shift/reduce conflict for LLIST resolved as shift
+    EQUALS          shift and go to state 44
+    LLIST           shift and go to state 45
+    SEMI            reduce using rule 32 (expr -> VARIABLE .)
+    CONJUNCTION     reduce using rule 32 (expr -> VARIABLE .)
+    DISJUNCTION     reduce using rule 32 (expr -> VARIABLE .)
+    COMPARISON      reduce using rule 32 (expr -> VARIABLE .)
+    MEMBER          reduce using rule 32 (expr -> VARIABLE .)
+    EXPONENT        reduce using rule 32 (expr -> VARIABLE .)
+    PLUS            reduce using rule 32 (expr -> VARIABLE .)
+    MINUS           reduce using rule 32 (expr -> VARIABLE .)
+    TIMES           reduce using rule 32 (expr -> VARIABLE .)
+    DIVIDE          reduce using rule 32 (expr -> VARIABLE .)
+    INTDIV          reduce using rule 32 (expr -> VARIABLE .)
+    MODULUS         reduce using rule 32 (expr -> VARIABLE .)
+    CONS            reduce using rule 32 (expr -> VARIABLE .)
+    COMMA           reduce using rule 32 (expr -> VARIABLE .)
+    RLIST           reduce using rule 32 (expr -> VARIABLE .)
+    RPAREN          reduce using rule 32 (expr -> VARIABLE .)
+
+  ! LLIST           [ reduce using rule 32 (expr -> VARIABLE .) ]
+
+
+state 14
+
+    (40) list -> LLIST . listing RLIST
+    (41) list -> LLIST . RLIST
+    (42) listing -> . expr COMMA listing
+    (43) listing -> . expr
+    (44) listing -> . expr COMMA
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    RLIST           shift and go to state 47
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    listing                        shift and go to state 46
+    expr                           shift and go to state 48
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 15
+
+    (16) expr -> PRINT . paren
+    (31) paren -> . LPAREN expr RPAREN
+
+    LPAREN          shift and go to state 29
+
+    paren                          shift and go to state 49
+
+state 16
+
+    (17) expr -> NEGATION . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 50
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 17
+
+    (20) expr -> TRUE .
+
+    SEMI            reduce using rule 20 (expr -> TRUE .)
+    CONJUNCTION     reduce using rule 20 (expr -> TRUE .)
+    DISJUNCTION     reduce using rule 20 (expr -> TRUE .)
+    COMPARISON      reduce using rule 20 (expr -> TRUE .)
+    MEMBER          reduce using rule 20 (expr -> TRUE .)
+    EXPONENT        reduce using rule 20 (expr -> TRUE .)
+    PLUS            reduce using rule 20 (expr -> TRUE .)
+    MINUS           reduce using rule 20 (expr -> TRUE .)
+    TIMES           reduce using rule 20 (expr -> TRUE .)
+    DIVIDE          reduce using rule 20 (expr -> TRUE .)
+    INTDIV          reduce using rule 20 (expr -> TRUE .)
+    MODULUS         reduce using rule 20 (expr -> TRUE .)
+    LLIST           reduce using rule 20 (expr -> TRUE .)
+    CONS            reduce using rule 20 (expr -> TRUE .)
+    COMMA           reduce using rule 20 (expr -> TRUE .)
+    RLIST           reduce using rule 20 (expr -> TRUE .)
+    RPAREN          reduce using rule 20 (expr -> TRUE .)
+
+
+state 18
+
+    (21) expr -> FALSE .
+
+    SEMI            reduce using rule 21 (expr -> FALSE .)
+    CONJUNCTION     reduce using rule 21 (expr -> FALSE .)
+    DISJUNCTION     reduce using rule 21 (expr -> FALSE .)
+    COMPARISON      reduce using rule 21 (expr -> FALSE .)
+    MEMBER          reduce using rule 21 (expr -> FALSE .)
+    EXPONENT        reduce using rule 21 (expr -> FALSE .)
+    PLUS            reduce using rule 21 (expr -> FALSE .)
+    MINUS           reduce using rule 21 (expr -> FALSE .)
+    TIMES           reduce using rule 21 (expr -> FALSE .)
+    DIVIDE          reduce using rule 21 (expr -> FALSE .)
+    INTDIV          reduce using rule 21 (expr -> FALSE .)
+    MODULUS         reduce using rule 21 (expr -> FALSE .)
+    LLIST           reduce using rule 21 (expr -> FALSE .)
+    CONS            reduce using rule 21 (expr -> FALSE .)
+    COMMA           reduce using rule 21 (expr -> FALSE .)
+    RLIST           reduce using rule 21 (expr -> FALSE .)
+    RPAREN          reduce using rule 21 (expr -> FALSE .)
+
+
+state 19
+
+    (33) expr -> NUMBER .
+
+    SEMI            reduce using rule 33 (expr -> NUMBER .)
+    CONJUNCTION     reduce using rule 33 (expr -> NUMBER .)
+    DISJUNCTION     reduce using rule 33 (expr -> NUMBER .)
+    COMPARISON      reduce using rule 33 (expr -> NUMBER .)
+    MEMBER          reduce using rule 33 (expr -> NUMBER .)
+    EXPONENT        reduce using rule 33 (expr -> NUMBER .)
+    PLUS            reduce using rule 33 (expr -> NUMBER .)
+    MINUS           reduce using rule 33 (expr -> NUMBER .)
+    TIMES           reduce using rule 33 (expr -> NUMBER .)
+    DIVIDE          reduce using rule 33 (expr -> NUMBER .)
+    INTDIV          reduce using rule 33 (expr -> NUMBER .)
+    MODULUS         reduce using rule 33 (expr -> NUMBER .)
+    LLIST           reduce using rule 33 (expr -> NUMBER .)
+    CONS            reduce using rule 33 (expr -> NUMBER .)
+    COMMA           reduce using rule 33 (expr -> NUMBER .)
+    RLIST           reduce using rule 33 (expr -> NUMBER .)
+    RPAREN          reduce using rule 33 (expr -> NUMBER .)
+
+
+state 20
+
+    (34) expr -> STRING .
+
+    SEMI            reduce using rule 34 (expr -> STRING .)
+    CONJUNCTION     reduce using rule 34 (expr -> STRING .)
+    DISJUNCTION     reduce using rule 34 (expr -> STRING .)
+    COMPARISON      reduce using rule 34 (expr -> STRING .)
+    MEMBER          reduce using rule 34 (expr -> STRING .)
+    EXPONENT        reduce using rule 34 (expr -> STRING .)
+    PLUS            reduce using rule 34 (expr -> STRING .)
+    MINUS           reduce using rule 34 (expr -> STRING .)
+    TIMES           reduce using rule 34 (expr -> STRING .)
+    DIVIDE          reduce using rule 34 (expr -> STRING .)
+    INTDIV          reduce using rule 34 (expr -> STRING .)
+    MODULUS         reduce using rule 34 (expr -> STRING .)
+    LLIST           reduce using rule 34 (expr -> STRING .)
+    CONS            reduce using rule 34 (expr -> STRING .)
+    COMMA           reduce using rule 34 (expr -> STRING .)
+    RLIST           reduce using rule 34 (expr -> STRING .)
+    RPAREN          reduce using rule 34 (expr -> STRING .)
+
+
+state 21
+
+    (35) expr -> list .
+
+    SEMI            reduce using rule 35 (expr -> list .)
+    CONJUNCTION     reduce using rule 35 (expr -> list .)
+    DISJUNCTION     reduce using rule 35 (expr -> list .)
+    COMPARISON      reduce using rule 35 (expr -> list .)
+    MEMBER          reduce using rule 35 (expr -> list .)
+    EXPONENT        reduce using rule 35 (expr -> list .)
+    PLUS            reduce using rule 35 (expr -> list .)
+    MINUS           reduce using rule 35 (expr -> list .)
+    TIMES           reduce using rule 35 (expr -> list .)
+    DIVIDE          reduce using rule 35 (expr -> list .)
+    INTDIV          reduce using rule 35 (expr -> list .)
+    MODULUS         reduce using rule 35 (expr -> list .)
+    LLIST           reduce using rule 35 (expr -> list .)
+    CONS            reduce using rule 35 (expr -> list .)
+    COMMA           reduce using rule 35 (expr -> list .)
+    RLIST           reduce using rule 35 (expr -> list .)
+    RPAREN          reduce using rule 35 (expr -> list .)
+
+
+state 22
+
+    (36) expr -> tuple .
+
+    SEMI            reduce using rule 36 (expr -> tuple .)
+    CONJUNCTION     reduce using rule 36 (expr -> tuple .)
+    DISJUNCTION     reduce using rule 36 (expr -> tuple .)
+    COMPARISON      reduce using rule 36 (expr -> tuple .)
+    MEMBER          reduce using rule 36 (expr -> tuple .)
+    EXPONENT        reduce using rule 36 (expr -> tuple .)
+    PLUS            reduce using rule 36 (expr -> tuple .)
+    MINUS           reduce using rule 36 (expr -> tuple .)
+    TIMES           reduce using rule 36 (expr -> tuple .)
+    DIVIDE          reduce using rule 36 (expr -> tuple .)
+    INTDIV          reduce using rule 36 (expr -> tuple .)
+    MODULUS         reduce using rule 36 (expr -> tuple .)
+    LLIST           reduce using rule 36 (expr -> tuple .)
+    CONS            reduce using rule 36 (expr -> tuple .)
+    COMMA           reduce using rule 36 (expr -> tuple .)
+    RLIST           reduce using rule 36 (expr -> tuple .)
+    RPAREN          reduce using rule 36 (expr -> tuple .)
+
+
+state 23
+
+    (39) expr -> TUPLEINDEXING . NUMBER tuple
+
+    NUMBER          shift and go to state 51
+
+
+state 24
+
+    (9) condition -> IF . paren block
+    (10) condition -> IF . paren block ELSE block
+    (31) paren -> . LPAREN expr RPAREN
+
+    LPAREN          shift and go to state 29
+
+    paren                          shift and go to state 52
+
+state 25
+
+    (38) tuple -> LPAREN . listing RPAREN
+    (31) paren -> LPAREN . expr RPAREN
+    (42) listing -> . expr COMMA listing
+    (43) listing -> . expr
+    (44) listing -> . expr COMMA
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    listing                        shift and go to state 53
+    expr                           shift and go to state 54
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 26
+
+    (4) block -> LCURLY statements RCURLY .
+
+    LCURLY          reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    $end            reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    RCURLY          reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    WHILE           reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    VARIABLE        reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    PRINT           reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    NEGATION        reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    TRUE            reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    FALSE           reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    NUMBER          reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    STRING          reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    TUPLEINDEXING   reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    IF              reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    LLIST           reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    LPAREN          reduce using rule 4 (block -> LCURLY statements RCURLY .)
+    ELSE            reduce using rule 4 (block -> LCURLY statements RCURLY .)
+
+
+state 27
+
+    (6) statements -> statements statement .
+
+    RCURLY          reduce using rule 6 (statements -> statements statement .)
+    WHILE           reduce using rule 6 (statements -> statements statement .)
+    VARIABLE        reduce using rule 6 (statements -> statements statement .)
+    PRINT           reduce using rule 6 (statements -> statements statement .)
+    NEGATION        reduce using rule 6 (statements -> statements statement .)
+    TRUE            reduce using rule 6 (statements -> statements statement .)
+    FALSE           reduce using rule 6 (statements -> statements statement .)
+    NUMBER          reduce using rule 6 (statements -> statements statement .)
+    STRING          reduce using rule 6 (statements -> statements statement .)
+    TUPLEINDEXING   reduce using rule 6 (statements -> statements statement .)
+    IF              reduce using rule 6 (statements -> statements statement .)
+    LLIST           reduce using rule 6 (statements -> statements statement .)
+    LPAREN          reduce using rule 6 (statements -> statements statement .)
+
+
+state 28
+
+    (8) statement -> WHILE paren . block
+    (4) block -> . LCURLY statements RCURLY
+    (5) block -> . LCURLY RCURLY
+
+    LCURLY          shift and go to state 4
+
+    block                          shift and go to state 55
+
+state 29
+
+    (31) paren -> LPAREN . expr RPAREN
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 56
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 30
+
+    (11) statement -> expr SEMI .
+
+    RCURLY          reduce using rule 11 (statement -> expr SEMI .)
+    WHILE           reduce using rule 11 (statement -> expr SEMI .)
+    VARIABLE        reduce using rule 11 (statement -> expr SEMI .)
+    PRINT           reduce using rule 11 (statement -> expr SEMI .)
+    NEGATION        reduce using rule 11 (statement -> expr SEMI .)
+    TRUE            reduce using rule 11 (statement -> expr SEMI .)
+    FALSE           reduce using rule 11 (statement -> expr SEMI .)
+    NUMBER          reduce using rule 11 (statement -> expr SEMI .)
+    STRING          reduce using rule 11 (statement -> expr SEMI .)
+    TUPLEINDEXING   reduce using rule 11 (statement -> expr SEMI .)
+    IF              reduce using rule 11 (statement -> expr SEMI .)
+    LLIST           reduce using rule 11 (statement -> expr SEMI .)
+    LPAREN          reduce using rule 11 (statement -> expr SEMI .)
+
+
+state 31
+
+    (18) expr -> expr CONJUNCTION . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 57
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 32
+
+    (19) expr -> expr DISJUNCTION . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 58
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 33
+
+    (22) expr -> expr COMPARISON . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 59
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 34
+
+    (23) expr -> expr MEMBER . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 60
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 35
+
+    (24) expr -> expr EXPONENT . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 61
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 36
+
+    (25) expr -> expr PLUS . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 62
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 37
+
+    (26) expr -> expr MINUS . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 63
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 38
+
+    (27) expr -> expr TIMES . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 64
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 39
+
+    (28) expr -> expr DIVIDE . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 65
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 40
+
+    (29) expr -> expr INTDIV . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 66
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 41
+
+    (30) expr -> expr MODULUS . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 67
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 42
+
+    (45) expr -> expr LLIST . expr RLIST
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 68
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 43
+
+    (46) expr -> expr CONS . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 69
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 44
+
+    (13) expr -> VARIABLE EQUALS . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 70
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 45
+
+    (14) expr -> VARIABLE LLIST . expr RLIST EQUALS expr
+    (15) expr -> VARIABLE LLIST . expr RLIST
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 71
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 46
+
+    (40) list -> LLIST listing . RLIST
+
+    RLIST           shift and go to state 72
+
+
+state 47
+
+    (41) list -> LLIST RLIST .
+
+    SEMI            reduce using rule 41 (list -> LLIST RLIST .)
+    CONJUNCTION     reduce using rule 41 (list -> LLIST RLIST .)
+    DISJUNCTION     reduce using rule 41 (list -> LLIST RLIST .)
+    COMPARISON      reduce using rule 41 (list -> LLIST RLIST .)
+    MEMBER          reduce using rule 41 (list -> LLIST RLIST .)
+    EXPONENT        reduce using rule 41 (list -> LLIST RLIST .)
+    PLUS            reduce using rule 41 (list -> LLIST RLIST .)
+    MINUS           reduce using rule 41 (list -> LLIST RLIST .)
+    TIMES           reduce using rule 41 (list -> LLIST RLIST .)
+    DIVIDE          reduce using rule 41 (list -> LLIST RLIST .)
+    INTDIV          reduce using rule 41 (list -> LLIST RLIST .)
+    MODULUS         reduce using rule 41 (list -> LLIST RLIST .)
+    LLIST           reduce using rule 41 (list -> LLIST RLIST .)
+    CONS            reduce using rule 41 (list -> LLIST RLIST .)
+    COMMA           reduce using rule 41 (list -> LLIST RLIST .)
+    RLIST           reduce using rule 41 (list -> LLIST RLIST .)
+    RPAREN          reduce using rule 41 (list -> LLIST RLIST .)
+
+
+state 48
+
+    (42) listing -> expr . COMMA listing
+    (43) listing -> expr .
+    (44) listing -> expr . COMMA
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    COMMA           shift and go to state 73
+    RLIST           reduce using rule 43 (listing -> expr .)
+    RPAREN          reduce using rule 43 (listing -> expr .)
+    CONJUNCTION     shift and go to state 31
+    DISJUNCTION     shift and go to state 32
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+
+state 49
+
+    (16) expr -> PRINT paren .
+
+    SEMI            reduce using rule 16 (expr -> PRINT paren .)
+    CONJUNCTION     reduce using rule 16 (expr -> PRINT paren .)
+    DISJUNCTION     reduce using rule 16 (expr -> PRINT paren .)
+    COMPARISON      reduce using rule 16 (expr -> PRINT paren .)
+    MEMBER          reduce using rule 16 (expr -> PRINT paren .)
+    EXPONENT        reduce using rule 16 (expr -> PRINT paren .)
+    PLUS            reduce using rule 16 (expr -> PRINT paren .)
+    MINUS           reduce using rule 16 (expr -> PRINT paren .)
+    TIMES           reduce using rule 16 (expr -> PRINT paren .)
+    DIVIDE          reduce using rule 16 (expr -> PRINT paren .)
+    INTDIV          reduce using rule 16 (expr -> PRINT paren .)
+    MODULUS         reduce using rule 16 (expr -> PRINT paren .)
+    LLIST           reduce using rule 16 (expr -> PRINT paren .)
+    CONS            reduce using rule 16 (expr -> PRINT paren .)
+    COMMA           reduce using rule 16 (expr -> PRINT paren .)
+    RLIST           reduce using rule 16 (expr -> PRINT paren .)
+    RPAREN          reduce using rule 16 (expr -> PRINT paren .)
+
+
+state 50
+
+    (17) expr -> NEGATION expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 17 (expr -> NEGATION expr .)
+    CONJUNCTION     reduce using rule 17 (expr -> NEGATION expr .)
+    DISJUNCTION     reduce using rule 17 (expr -> NEGATION expr .)
+    COMMA           reduce using rule 17 (expr -> NEGATION expr .)
+    RLIST           reduce using rule 17 (expr -> NEGATION expr .)
+    RPAREN          reduce using rule 17 (expr -> NEGATION expr .)
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+  ! COMPARISON      [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! MEMBER          [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! EXPONENT        [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! PLUS            [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! MINUS           [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! TIMES           [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! DIVIDE          [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! INTDIV          [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! MODULUS         [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! LLIST           [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! CONS            [ reduce using rule 17 (expr -> NEGATION expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+
+
+state 51
+
+    (39) expr -> TUPLEINDEXING NUMBER . tuple
+    (38) tuple -> . LPAREN listing RPAREN
+
+    LPAREN          shift and go to state 75
+
+    tuple                          shift and go to state 74
+
+state 52
+
+    (9) condition -> IF paren . block
+    (10) condition -> IF paren . block ELSE block
+    (4) block -> . LCURLY statements RCURLY
+    (5) block -> . LCURLY RCURLY
+
+    LCURLY          shift and go to state 4
+
+    block                          shift and go to state 76
+
+state 53
+
+    (38) tuple -> LPAREN listing . RPAREN
+
+    RPAREN          shift and go to state 77
+
+
+state 54
+
+    (31) paren -> LPAREN expr . RPAREN
+    (42) listing -> expr . COMMA listing
+    (43) listing -> expr .
+    (44) listing -> expr . COMMA
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 78
+    COMMA           shift and go to state 73
+    CONJUNCTION     shift and go to state 31
+    DISJUNCTION     shift and go to state 32
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+  ! RPAREN          [ reduce using rule 43 (listing -> expr .) ]
+
+
+state 55
+
+    (8) statement -> WHILE paren block .
+
+    RCURLY          reduce using rule 8 (statement -> WHILE paren block .)
+    WHILE           reduce using rule 8 (statement -> WHILE paren block .)
+    VARIABLE        reduce using rule 8 (statement -> WHILE paren block .)
+    PRINT           reduce using rule 8 (statement -> WHILE paren block .)
+    NEGATION        reduce using rule 8 (statement -> WHILE paren block .)
+    TRUE            reduce using rule 8 (statement -> WHILE paren block .)
+    FALSE           reduce using rule 8 (statement -> WHILE paren block .)
+    NUMBER          reduce using rule 8 (statement -> WHILE paren block .)
+    STRING          reduce using rule 8 (statement -> WHILE paren block .)
+    TUPLEINDEXING   reduce using rule 8 (statement -> WHILE paren block .)
+    IF              reduce using rule 8 (statement -> WHILE paren block .)
+    LLIST           reduce using rule 8 (statement -> WHILE paren block .)
+    LPAREN          reduce using rule 8 (statement -> WHILE paren block .)
+
+
+state 56
+
+    (31) paren -> LPAREN expr . RPAREN
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    RPAREN          shift and go to state 78
+    CONJUNCTION     shift and go to state 31
+    DISJUNCTION     shift and go to state 32
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+
+state 57
+
+    (18) expr -> expr CONJUNCTION expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 18 (expr -> expr CONJUNCTION expr .)
+    CONJUNCTION     reduce using rule 18 (expr -> expr CONJUNCTION expr .)
+    DISJUNCTION     reduce using rule 18 (expr -> expr CONJUNCTION expr .)
+    COMMA           reduce using rule 18 (expr -> expr CONJUNCTION expr .)
+    RLIST           reduce using rule 18 (expr -> expr CONJUNCTION expr .)
+    RPAREN          reduce using rule 18 (expr -> expr CONJUNCTION expr .)
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+  ! COMPARISON      [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! MEMBER          [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! EXPONENT        [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! PLUS            [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! MINUS           [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! TIMES           [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! DIVIDE          [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! INTDIV          [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! MODULUS         [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! LLIST           [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! CONS            [ reduce using rule 18 (expr -> expr CONJUNCTION expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+
+
+state 58
+
+    (19) expr -> expr DISJUNCTION expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 19 (expr -> expr DISJUNCTION expr .)
+    CONJUNCTION     reduce using rule 19 (expr -> expr DISJUNCTION expr .)
+    DISJUNCTION     reduce using rule 19 (expr -> expr DISJUNCTION expr .)
+    COMMA           reduce using rule 19 (expr -> expr DISJUNCTION expr .)
+    RLIST           reduce using rule 19 (expr -> expr DISJUNCTION expr .)
+    RPAREN          reduce using rule 19 (expr -> expr DISJUNCTION expr .)
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+  ! COMPARISON      [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! MEMBER          [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! EXPONENT        [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! PLUS            [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! MINUS           [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! TIMES           [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! DIVIDE          [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! INTDIV          [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! MODULUS         [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! LLIST           [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! CONS            [ reduce using rule 19 (expr -> expr DISJUNCTION expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+
+
+state 59
+
+    (22) expr -> expr COMPARISON expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 22 (expr -> expr COMPARISON expr .)
+    CONJUNCTION     reduce using rule 22 (expr -> expr COMPARISON expr .)
+    DISJUNCTION     reduce using rule 22 (expr -> expr COMPARISON expr .)
+    COMPARISON      reduce using rule 22 (expr -> expr COMPARISON expr .)
+    COMMA           reduce using rule 22 (expr -> expr COMPARISON expr .)
+    RLIST           reduce using rule 22 (expr -> expr COMPARISON expr .)
+    RPAREN          reduce using rule 22 (expr -> expr COMPARISON expr .)
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+  ! MEMBER          [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! EXPONENT        [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! PLUS            [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! MINUS           [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! TIMES           [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! DIVIDE          [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! INTDIV          [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! MODULUS         [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! LLIST           [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! CONS            [ reduce using rule 22 (expr -> expr COMPARISON expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+
+
+state 60
+
+    (23) expr -> expr MEMBER expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 23 (expr -> expr MEMBER expr .)
+    CONJUNCTION     reduce using rule 23 (expr -> expr MEMBER expr .)
+    DISJUNCTION     reduce using rule 23 (expr -> expr MEMBER expr .)
+    COMPARISON      reduce using rule 23 (expr -> expr MEMBER expr .)
+    MEMBER          reduce using rule 23 (expr -> expr MEMBER expr .)
+    CONS            reduce using rule 23 (expr -> expr MEMBER expr .)
+    COMMA           reduce using rule 23 (expr -> expr MEMBER expr .)
+    RLIST           reduce using rule 23 (expr -> expr MEMBER expr .)
+    RPAREN          reduce using rule 23 (expr -> expr MEMBER expr .)
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+
+  ! EXPONENT        [ reduce using rule 23 (expr -> expr MEMBER expr .) ]
+  ! PLUS            [ reduce using rule 23 (expr -> expr MEMBER expr .) ]
+  ! MINUS           [ reduce using rule 23 (expr -> expr MEMBER expr .) ]
+  ! TIMES           [ reduce using rule 23 (expr -> expr MEMBER expr .) ]
+  ! DIVIDE          [ reduce using rule 23 (expr -> expr MEMBER expr .) ]
+  ! INTDIV          [ reduce using rule 23 (expr -> expr MEMBER expr .) ]
+  ! MODULUS         [ reduce using rule 23 (expr -> expr MEMBER expr .) ]
+  ! LLIST           [ reduce using rule 23 (expr -> expr MEMBER expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+  ! MEMBER          [ shift and go to state 34 ]
+  ! CONS            [ shift and go to state 43 ]
+
+
+state 61
+
+    (24) expr -> expr EXPONENT expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 24 (expr -> expr EXPONENT expr .)
+    CONJUNCTION     reduce using rule 24 (expr -> expr EXPONENT expr .)
+    DISJUNCTION     reduce using rule 24 (expr -> expr EXPONENT expr .)
+    COMPARISON      reduce using rule 24 (expr -> expr EXPONENT expr .)
+    MEMBER          reduce using rule 24 (expr -> expr EXPONENT expr .)
+    PLUS            reduce using rule 24 (expr -> expr EXPONENT expr .)
+    MINUS           reduce using rule 24 (expr -> expr EXPONENT expr .)
+    TIMES           reduce using rule 24 (expr -> expr EXPONENT expr .)
+    DIVIDE          reduce using rule 24 (expr -> expr EXPONENT expr .)
+    INTDIV          reduce using rule 24 (expr -> expr EXPONENT expr .)
+    MODULUS         reduce using rule 24 (expr -> expr EXPONENT expr .)
+    CONS            reduce using rule 24 (expr -> expr EXPONENT expr .)
+    COMMA           reduce using rule 24 (expr -> expr EXPONENT expr .)
+    RLIST           reduce using rule 24 (expr -> expr EXPONENT expr .)
+    RPAREN          reduce using rule 24 (expr -> expr EXPONENT expr .)
+    EXPONENT        shift and go to state 35
+    LLIST           shift and go to state 42
+
+  ! EXPONENT        [ reduce using rule 24 (expr -> expr EXPONENT expr .) ]
+  ! LLIST           [ reduce using rule 24 (expr -> expr EXPONENT expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+  ! MEMBER          [ shift and go to state 34 ]
+  ! PLUS            [ shift and go to state 36 ]
+  ! MINUS           [ shift and go to state 37 ]
+  ! TIMES           [ shift and go to state 38 ]
+  ! DIVIDE          [ shift and go to state 39 ]
+  ! INTDIV          [ shift and go to state 40 ]
+  ! MODULUS         [ shift and go to state 41 ]
+  ! CONS            [ shift and go to state 43 ]
+
+
+state 62
+
+    (25) expr -> expr PLUS expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 25 (expr -> expr PLUS expr .)
+    CONJUNCTION     reduce using rule 25 (expr -> expr PLUS expr .)
+    DISJUNCTION     reduce using rule 25 (expr -> expr PLUS expr .)
+    COMPARISON      reduce using rule 25 (expr -> expr PLUS expr .)
+    MEMBER          reduce using rule 25 (expr -> expr PLUS expr .)
+    PLUS            reduce using rule 25 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 25 (expr -> expr PLUS expr .)
+    CONS            reduce using rule 25 (expr -> expr PLUS expr .)
+    COMMA           reduce using rule 25 (expr -> expr PLUS expr .)
+    RLIST           reduce using rule 25 (expr -> expr PLUS expr .)
+    RPAREN          reduce using rule 25 (expr -> expr PLUS expr .)
+    EXPONENT        shift and go to state 35
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+
+  ! EXPONENT        [ reduce using rule 25 (expr -> expr PLUS expr .) ]
+  ! TIMES           [ reduce using rule 25 (expr -> expr PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 25 (expr -> expr PLUS expr .) ]
+  ! INTDIV          [ reduce using rule 25 (expr -> expr PLUS expr .) ]
+  ! MODULUS         [ reduce using rule 25 (expr -> expr PLUS expr .) ]
+  ! LLIST           [ reduce using rule 25 (expr -> expr PLUS expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+  ! MEMBER          [ shift and go to state 34 ]
+  ! PLUS            [ shift and go to state 36 ]
+  ! MINUS           [ shift and go to state 37 ]
+  ! CONS            [ shift and go to state 43 ]
+
+
+state 63
+
+    (26) expr -> expr MINUS expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 26 (expr -> expr MINUS expr .)
+    CONJUNCTION     reduce using rule 26 (expr -> expr MINUS expr .)
+    DISJUNCTION     reduce using rule 26 (expr -> expr MINUS expr .)
+    COMPARISON      reduce using rule 26 (expr -> expr MINUS expr .)
+    MEMBER          reduce using rule 26 (expr -> expr MINUS expr .)
+    PLUS            reduce using rule 26 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 26 (expr -> expr MINUS expr .)
+    CONS            reduce using rule 26 (expr -> expr MINUS expr .)
+    COMMA           reduce using rule 26 (expr -> expr MINUS expr .)
+    RLIST           reduce using rule 26 (expr -> expr MINUS expr .)
+    RPAREN          reduce using rule 26 (expr -> expr MINUS expr .)
+    EXPONENT        shift and go to state 35
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+
+  ! EXPONENT        [ reduce using rule 26 (expr -> expr MINUS expr .) ]
+  ! TIMES           [ reduce using rule 26 (expr -> expr MINUS expr .) ]
+  ! DIVIDE          [ reduce using rule 26 (expr -> expr MINUS expr .) ]
+  ! INTDIV          [ reduce using rule 26 (expr -> expr MINUS expr .) ]
+  ! MODULUS         [ reduce using rule 26 (expr -> expr MINUS expr .) ]
+  ! LLIST           [ reduce using rule 26 (expr -> expr MINUS expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+  ! MEMBER          [ shift and go to state 34 ]
+  ! PLUS            [ shift and go to state 36 ]
+  ! MINUS           [ shift and go to state 37 ]
+  ! CONS            [ shift and go to state 43 ]
+
+
+state 64
+
+    (27) expr -> expr TIMES expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 27 (expr -> expr TIMES expr .)
+    CONJUNCTION     reduce using rule 27 (expr -> expr TIMES expr .)
+    DISJUNCTION     reduce using rule 27 (expr -> expr TIMES expr .)
+    COMPARISON      reduce using rule 27 (expr -> expr TIMES expr .)
+    MEMBER          reduce using rule 27 (expr -> expr TIMES expr .)
+    PLUS            reduce using rule 27 (expr -> expr TIMES expr .)
+    MINUS           reduce using rule 27 (expr -> expr TIMES expr .)
+    TIMES           reduce using rule 27 (expr -> expr TIMES expr .)
+    DIVIDE          reduce using rule 27 (expr -> expr TIMES expr .)
+    INTDIV          reduce using rule 27 (expr -> expr TIMES expr .)
+    MODULUS         reduce using rule 27 (expr -> expr TIMES expr .)
+    CONS            reduce using rule 27 (expr -> expr TIMES expr .)
+    COMMA           reduce using rule 27 (expr -> expr TIMES expr .)
+    RLIST           reduce using rule 27 (expr -> expr TIMES expr .)
+    RPAREN          reduce using rule 27 (expr -> expr TIMES expr .)
+    EXPONENT        shift and go to state 35
+    LLIST           shift and go to state 42
+
+  ! EXPONENT        [ reduce using rule 27 (expr -> expr TIMES expr .) ]
+  ! LLIST           [ reduce using rule 27 (expr -> expr TIMES expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+  ! MEMBER          [ shift and go to state 34 ]
+  ! PLUS            [ shift and go to state 36 ]
+  ! MINUS           [ shift and go to state 37 ]
+  ! TIMES           [ shift and go to state 38 ]
+  ! DIVIDE          [ shift and go to state 39 ]
+  ! INTDIV          [ shift and go to state 40 ]
+  ! MODULUS         [ shift and go to state 41 ]
+  ! CONS            [ shift and go to state 43 ]
+
+
+state 65
+
+    (28) expr -> expr DIVIDE expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 28 (expr -> expr DIVIDE expr .)
+    CONJUNCTION     reduce using rule 28 (expr -> expr DIVIDE expr .)
+    DISJUNCTION     reduce using rule 28 (expr -> expr DIVIDE expr .)
+    COMPARISON      reduce using rule 28 (expr -> expr DIVIDE expr .)
+    MEMBER          reduce using rule 28 (expr -> expr DIVIDE expr .)
+    PLUS            reduce using rule 28 (expr -> expr DIVIDE expr .)
+    MINUS           reduce using rule 28 (expr -> expr DIVIDE expr .)
+    TIMES           reduce using rule 28 (expr -> expr DIVIDE expr .)
+    DIVIDE          reduce using rule 28 (expr -> expr DIVIDE expr .)
+    INTDIV          reduce using rule 28 (expr -> expr DIVIDE expr .)
+    MODULUS         reduce using rule 28 (expr -> expr DIVIDE expr .)
+    CONS            reduce using rule 28 (expr -> expr DIVIDE expr .)
+    COMMA           reduce using rule 28 (expr -> expr DIVIDE expr .)
+    RLIST           reduce using rule 28 (expr -> expr DIVIDE expr .)
+    RPAREN          reduce using rule 28 (expr -> expr DIVIDE expr .)
+    EXPONENT        shift and go to state 35
+    LLIST           shift and go to state 42
+
+  ! EXPONENT        [ reduce using rule 28 (expr -> expr DIVIDE expr .) ]
+  ! LLIST           [ reduce using rule 28 (expr -> expr DIVIDE expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+  ! MEMBER          [ shift and go to state 34 ]
+  ! PLUS            [ shift and go to state 36 ]
+  ! MINUS           [ shift and go to state 37 ]
+  ! TIMES           [ shift and go to state 38 ]
+  ! DIVIDE          [ shift and go to state 39 ]
+  ! INTDIV          [ shift and go to state 40 ]
+  ! MODULUS         [ shift and go to state 41 ]
+  ! CONS            [ shift and go to state 43 ]
+
+
+state 66
+
+    (29) expr -> expr INTDIV expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 29 (expr -> expr INTDIV expr .)
+    CONJUNCTION     reduce using rule 29 (expr -> expr INTDIV expr .)
+    DISJUNCTION     reduce using rule 29 (expr -> expr INTDIV expr .)
+    COMPARISON      reduce using rule 29 (expr -> expr INTDIV expr .)
+    MEMBER          reduce using rule 29 (expr -> expr INTDIV expr .)
+    PLUS            reduce using rule 29 (expr -> expr INTDIV expr .)
+    MINUS           reduce using rule 29 (expr -> expr INTDIV expr .)
+    TIMES           reduce using rule 29 (expr -> expr INTDIV expr .)
+    DIVIDE          reduce using rule 29 (expr -> expr INTDIV expr .)
+    INTDIV          reduce using rule 29 (expr -> expr INTDIV expr .)
+    MODULUS         reduce using rule 29 (expr -> expr INTDIV expr .)
+    CONS            reduce using rule 29 (expr -> expr INTDIV expr .)
+    COMMA           reduce using rule 29 (expr -> expr INTDIV expr .)
+    RLIST           reduce using rule 29 (expr -> expr INTDIV expr .)
+    RPAREN          reduce using rule 29 (expr -> expr INTDIV expr .)
+    EXPONENT        shift and go to state 35
+    LLIST           shift and go to state 42
+
+  ! EXPONENT        [ reduce using rule 29 (expr -> expr INTDIV expr .) ]
+  ! LLIST           [ reduce using rule 29 (expr -> expr INTDIV expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+  ! MEMBER          [ shift and go to state 34 ]
+  ! PLUS            [ shift and go to state 36 ]
+  ! MINUS           [ shift and go to state 37 ]
+  ! TIMES           [ shift and go to state 38 ]
+  ! DIVIDE          [ shift and go to state 39 ]
+  ! INTDIV          [ shift and go to state 40 ]
+  ! MODULUS         [ shift and go to state 41 ]
+  ! CONS            [ shift and go to state 43 ]
+
+
+state 67
+
+    (30) expr -> expr MODULUS expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 30 (expr -> expr MODULUS expr .)
+    CONJUNCTION     reduce using rule 30 (expr -> expr MODULUS expr .)
+    DISJUNCTION     reduce using rule 30 (expr -> expr MODULUS expr .)
+    COMPARISON      reduce using rule 30 (expr -> expr MODULUS expr .)
+    MEMBER          reduce using rule 30 (expr -> expr MODULUS expr .)
+    PLUS            reduce using rule 30 (expr -> expr MODULUS expr .)
+    MINUS           reduce using rule 30 (expr -> expr MODULUS expr .)
+    TIMES           reduce using rule 30 (expr -> expr MODULUS expr .)
+    DIVIDE          reduce using rule 30 (expr -> expr MODULUS expr .)
+    INTDIV          reduce using rule 30 (expr -> expr MODULUS expr .)
+    MODULUS         reduce using rule 30 (expr -> expr MODULUS expr .)
+    CONS            reduce using rule 30 (expr -> expr MODULUS expr .)
+    COMMA           reduce using rule 30 (expr -> expr MODULUS expr .)
+    RLIST           reduce using rule 30 (expr -> expr MODULUS expr .)
+    RPAREN          reduce using rule 30 (expr -> expr MODULUS expr .)
+    EXPONENT        shift and go to state 35
+    LLIST           shift and go to state 42
+
+  ! EXPONENT        [ reduce using rule 30 (expr -> expr MODULUS expr .) ]
+  ! LLIST           [ reduce using rule 30 (expr -> expr MODULUS expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+  ! MEMBER          [ shift and go to state 34 ]
+  ! PLUS            [ shift and go to state 36 ]
+  ! MINUS           [ shift and go to state 37 ]
+  ! TIMES           [ shift and go to state 38 ]
+  ! DIVIDE          [ shift and go to state 39 ]
+  ! INTDIV          [ shift and go to state 40 ]
+  ! MODULUS         [ shift and go to state 41 ]
+  ! CONS            [ shift and go to state 43 ]
+
+
+state 68
+
+    (45) expr -> expr LLIST expr . RLIST
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    RLIST           shift and go to state 79
+    CONJUNCTION     shift and go to state 31
+    DISJUNCTION     shift and go to state 32
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+
+state 69
+
+    (46) expr -> expr CONS expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    SEMI            reduce using rule 46 (expr -> expr CONS expr .)
+    CONJUNCTION     reduce using rule 46 (expr -> expr CONS expr .)
+    DISJUNCTION     reduce using rule 46 (expr -> expr CONS expr .)
+    COMPARISON      reduce using rule 46 (expr -> expr CONS expr .)
+    CONS            reduce using rule 46 (expr -> expr CONS expr .)
+    COMMA           reduce using rule 46 (expr -> expr CONS expr .)
+    RLIST           reduce using rule 46 (expr -> expr CONS expr .)
+    RPAREN          reduce using rule 46 (expr -> expr CONS expr .)
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+
+  ! MEMBER          [ reduce using rule 46 (expr -> expr CONS expr .) ]
+  ! EXPONENT        [ reduce using rule 46 (expr -> expr CONS expr .) ]
+  ! PLUS            [ reduce using rule 46 (expr -> expr CONS expr .) ]
+  ! MINUS           [ reduce using rule 46 (expr -> expr CONS expr .) ]
+  ! TIMES           [ reduce using rule 46 (expr -> expr CONS expr .) ]
+  ! DIVIDE          [ reduce using rule 46 (expr -> expr CONS expr .) ]
+  ! INTDIV          [ reduce using rule 46 (expr -> expr CONS expr .) ]
+  ! MODULUS         [ reduce using rule 46 (expr -> expr CONS expr .) ]
+  ! LLIST           [ reduce using rule 46 (expr -> expr CONS expr .) ]
+  ! CONJUNCTION     [ shift and go to state 31 ]
+  ! DISJUNCTION     [ shift and go to state 32 ]
+  ! COMPARISON      [ shift and go to state 33 ]
+  ! CONS            [ shift and go to state 43 ]
+
+
+state 70
+
+    (13) expr -> VARIABLE EQUALS expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+  ! shift/reduce conflict for CONJUNCTION resolved as shift
+  ! shift/reduce conflict for DISJUNCTION resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for MEMBER resolved as shift
+  ! shift/reduce conflict for EXPONENT resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for INTDIV resolved as shift
+  ! shift/reduce conflict for MODULUS resolved as shift
+  ! shift/reduce conflict for LLIST resolved as shift
+  ! shift/reduce conflict for CONS resolved as shift
+    SEMI            reduce using rule 13 (expr -> VARIABLE EQUALS expr .)
+    COMMA           reduce using rule 13 (expr -> VARIABLE EQUALS expr .)
+    RLIST           reduce using rule 13 (expr -> VARIABLE EQUALS expr .)
+    RPAREN          reduce using rule 13 (expr -> VARIABLE EQUALS expr .)
+    CONJUNCTION     shift and go to state 31
+    DISJUNCTION     shift and go to state 32
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+  ! CONJUNCTION     [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! DISJUNCTION     [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! COMPARISON      [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! MEMBER          [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! EXPONENT        [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! PLUS            [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! MINUS           [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! TIMES           [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! DIVIDE          [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! INTDIV          [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! MODULUS         [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! LLIST           [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+  ! CONS            [ reduce using rule 13 (expr -> VARIABLE EQUALS expr .) ]
+
+
+state 71
+
+    (14) expr -> VARIABLE LLIST expr . RLIST EQUALS expr
+    (15) expr -> VARIABLE LLIST expr . RLIST
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+    RLIST           shift and go to state 80
+    CONJUNCTION     shift and go to state 31
+    DISJUNCTION     shift and go to state 32
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+
+state 72
+
+    (40) list -> LLIST listing RLIST .
+
+    SEMI            reduce using rule 40 (list -> LLIST listing RLIST .)
+    CONJUNCTION     reduce using rule 40 (list -> LLIST listing RLIST .)
+    DISJUNCTION     reduce using rule 40 (list -> LLIST listing RLIST .)
+    COMPARISON      reduce using rule 40 (list -> LLIST listing RLIST .)
+    MEMBER          reduce using rule 40 (list -> LLIST listing RLIST .)
+    EXPONENT        reduce using rule 40 (list -> LLIST listing RLIST .)
+    PLUS            reduce using rule 40 (list -> LLIST listing RLIST .)
+    MINUS           reduce using rule 40 (list -> LLIST listing RLIST .)
+    TIMES           reduce using rule 40 (list -> LLIST listing RLIST .)
+    DIVIDE          reduce using rule 40 (list -> LLIST listing RLIST .)
+    INTDIV          reduce using rule 40 (list -> LLIST listing RLIST .)
+    MODULUS         reduce using rule 40 (list -> LLIST listing RLIST .)
+    LLIST           reduce using rule 40 (list -> LLIST listing RLIST .)
+    CONS            reduce using rule 40 (list -> LLIST listing RLIST .)
+    COMMA           reduce using rule 40 (list -> LLIST listing RLIST .)
+    RLIST           reduce using rule 40 (list -> LLIST listing RLIST .)
+    RPAREN          reduce using rule 40 (list -> LLIST listing RLIST .)
+
+
+state 73
+
+    (42) listing -> expr COMMA . listing
+    (44) listing -> expr COMMA .
+    (42) listing -> . expr COMMA listing
+    (43) listing -> . expr
+    (44) listing -> . expr COMMA
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    RLIST           reduce using rule 44 (listing -> expr COMMA .)
+    RPAREN          reduce using rule 44 (listing -> expr COMMA .)
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 48
+    listing                        shift and go to state 81
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 74
+
+    (39) expr -> TUPLEINDEXING NUMBER tuple .
+
+    SEMI            reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    CONJUNCTION     reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    DISJUNCTION     reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    COMPARISON      reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    MEMBER          reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    EXPONENT        reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    PLUS            reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    MINUS           reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    TIMES           reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    DIVIDE          reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    INTDIV          reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    MODULUS         reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    LLIST           reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    CONS            reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    COMMA           reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    RLIST           reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+    RPAREN          reduce using rule 39 (expr -> TUPLEINDEXING NUMBER tuple .)
+
+
+state 75
+
+    (38) tuple -> LPAREN . listing RPAREN
+    (42) listing -> . expr COMMA listing
+    (43) listing -> . expr
+    (44) listing -> . expr COMMA
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    listing                        shift and go to state 53
+    expr                           shift and go to state 48
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 76
+
+    (9) condition -> IF paren block .
+    (10) condition -> IF paren block . ELSE block
+
+    RCURLY          reduce using rule 9 (condition -> IF paren block .)
+    WHILE           reduce using rule 9 (condition -> IF paren block .)
+    VARIABLE        reduce using rule 9 (condition -> IF paren block .)
+    PRINT           reduce using rule 9 (condition -> IF paren block .)
+    NEGATION        reduce using rule 9 (condition -> IF paren block .)
+    TRUE            reduce using rule 9 (condition -> IF paren block .)
+    FALSE           reduce using rule 9 (condition -> IF paren block .)
+    NUMBER          reduce using rule 9 (condition -> IF paren block .)
+    STRING          reduce using rule 9 (condition -> IF paren block .)
+    TUPLEINDEXING   reduce using rule 9 (condition -> IF paren block .)
+    IF              reduce using rule 9 (condition -> IF paren block .)
+    LLIST           reduce using rule 9 (condition -> IF paren block .)
+    LPAREN          reduce using rule 9 (condition -> IF paren block .)
+    ELSE            shift and go to state 82
+
+
+state 77
+
+    (38) tuple -> LPAREN listing RPAREN .
+
+    SEMI            reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    CONJUNCTION     reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    DISJUNCTION     reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    COMPARISON      reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    MEMBER          reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    EXPONENT        reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    PLUS            reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    MINUS           reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    TIMES           reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    DIVIDE          reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    INTDIV          reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    MODULUS         reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    LLIST           reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    CONS            reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    COMMA           reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    RLIST           reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+    RPAREN          reduce using rule 38 (tuple -> LPAREN listing RPAREN .)
+
+
+state 78
+
+    (31) paren -> LPAREN expr RPAREN .
+
+    SEMI            reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    CONJUNCTION     reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    DISJUNCTION     reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    COMPARISON      reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    MEMBER          reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    EXPONENT        reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    PLUS            reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    MINUS           reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    TIMES           reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    DIVIDE          reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    INTDIV          reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    MODULUS         reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    LLIST           reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    CONS            reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    LCURLY          reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    COMMA           reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    RLIST           reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 31 (paren -> LPAREN expr RPAREN .)
+
+
+state 79
+
+    (45) expr -> expr LLIST expr RLIST .
+
+    SEMI            reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    CONJUNCTION     reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    DISJUNCTION     reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    COMPARISON      reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    MEMBER          reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    EXPONENT        reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    PLUS            reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    MINUS           reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    TIMES           reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    DIVIDE          reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    INTDIV          reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    MODULUS         reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    LLIST           reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    CONS            reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    COMMA           reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    RLIST           reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+    RPAREN          reduce using rule 45 (expr -> expr LLIST expr RLIST .)
+
+
+state 80
+
+    (14) expr -> VARIABLE LLIST expr RLIST . EQUALS expr
+    (15) expr -> VARIABLE LLIST expr RLIST .
+
+    EQUALS          shift and go to state 83
+    SEMI            reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    CONJUNCTION     reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    DISJUNCTION     reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    COMPARISON      reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    MEMBER          reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    EXPONENT        reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    PLUS            reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    MINUS           reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    TIMES           reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    DIVIDE          reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    INTDIV          reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    MODULUS         reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    LLIST           reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    CONS            reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    COMMA           reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    RLIST           reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+    RPAREN          reduce using rule 15 (expr -> VARIABLE LLIST expr RLIST .)
+
+
+state 81
+
+    (42) listing -> expr COMMA listing .
+
+    RLIST           reduce using rule 42 (listing -> expr COMMA listing .)
+    RPAREN          reduce using rule 42 (listing -> expr COMMA listing .)
+
+
+state 82
+
+    (10) condition -> IF paren block ELSE . block
+    (4) block -> . LCURLY statements RCURLY
+    (5) block -> . LCURLY RCURLY
+
+    LCURLY          shift and go to state 4
+
+    block                          shift and go to state 84
+
+state 83
+
+    (14) expr -> VARIABLE LLIST expr RLIST EQUALS . expr
+    (13) expr -> . VARIABLE EQUALS expr
+    (14) expr -> . VARIABLE LLIST expr RLIST EQUALS expr
+    (15) expr -> . VARIABLE LLIST expr RLIST
+    (16) expr -> . PRINT paren
+    (17) expr -> . NEGATION expr
+    (18) expr -> . expr CONJUNCTION expr
+    (19) expr -> . expr DISJUNCTION expr
+    (20) expr -> . TRUE
+    (21) expr -> . FALSE
+    (22) expr -> . expr COMPARISON expr
+    (23) expr -> . expr MEMBER expr
+    (24) expr -> . expr EXPONENT expr
+    (25) expr -> . expr PLUS expr
+    (26) expr -> . expr MINUS expr
+    (27) expr -> . expr TIMES expr
+    (28) expr -> . expr DIVIDE expr
+    (29) expr -> . expr INTDIV expr
+    (30) expr -> . expr MODULUS expr
+    (32) expr -> . VARIABLE
+    (33) expr -> . NUMBER
+    (34) expr -> . STRING
+    (35) expr -> . list
+    (36) expr -> . tuple
+    (37) expr -> . paren
+    (39) expr -> . TUPLEINDEXING NUMBER tuple
+    (45) expr -> . expr LLIST expr RLIST
+    (46) expr -> . expr CONS expr
+    (40) list -> . LLIST listing RLIST
+    (41) list -> . LLIST RLIST
+    (38) tuple -> . LPAREN listing RPAREN
+    (31) paren -> . LPAREN expr RPAREN
+
+    VARIABLE        shift and go to state 13
+    PRINT           shift and go to state 15
+    NEGATION        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 19
+    STRING          shift and go to state 20
+    TUPLEINDEXING   shift and go to state 23
+    LLIST           shift and go to state 14
+    LPAREN          shift and go to state 25
+
+    expr                           shift and go to state 85
+    paren                          shift and go to state 10
+    list                           shift and go to state 21
+    tuple                          shift and go to state 22
+
+state 84
+
+    (10) condition -> IF paren block ELSE block .
+
+    RCURLY          reduce using rule 10 (condition -> IF paren block ELSE block .)
+    WHILE           reduce using rule 10 (condition -> IF paren block ELSE block .)
+    VARIABLE        reduce using rule 10 (condition -> IF paren block ELSE block .)
+    PRINT           reduce using rule 10 (condition -> IF paren block ELSE block .)
+    NEGATION        reduce using rule 10 (condition -> IF paren block ELSE block .)
+    TRUE            reduce using rule 10 (condition -> IF paren block ELSE block .)
+    FALSE           reduce using rule 10 (condition -> IF paren block ELSE block .)
+    NUMBER          reduce using rule 10 (condition -> IF paren block ELSE block .)
+    STRING          reduce using rule 10 (condition -> IF paren block ELSE block .)
+    TUPLEINDEXING   reduce using rule 10 (condition -> IF paren block ELSE block .)
+    IF              reduce using rule 10 (condition -> IF paren block ELSE block .)
+    LLIST           reduce using rule 10 (condition -> IF paren block ELSE block .)
+    LPAREN          reduce using rule 10 (condition -> IF paren block ELSE block .)
+
+
+state 85
+
+    (14) expr -> VARIABLE LLIST expr RLIST EQUALS expr .
+    (18) expr -> expr . CONJUNCTION expr
+    (19) expr -> expr . DISJUNCTION expr
+    (22) expr -> expr . COMPARISON expr
+    (23) expr -> expr . MEMBER expr
+    (24) expr -> expr . EXPONENT expr
+    (25) expr -> expr . PLUS expr
+    (26) expr -> expr . MINUS expr
+    (27) expr -> expr . TIMES expr
+    (28) expr -> expr . DIVIDE expr
+    (29) expr -> expr . INTDIV expr
+    (30) expr -> expr . MODULUS expr
+    (45) expr -> expr . LLIST expr RLIST
+    (46) expr -> expr . CONS expr
+
+  ! shift/reduce conflict for CONJUNCTION resolved as shift
+  ! shift/reduce conflict for DISJUNCTION resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for MEMBER resolved as shift
+  ! shift/reduce conflict for EXPONENT resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for INTDIV resolved as shift
+  ! shift/reduce conflict for MODULUS resolved as shift
+  ! shift/reduce conflict for LLIST resolved as shift
+  ! shift/reduce conflict for CONS resolved as shift
+    SEMI            reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .)
+    COMMA           reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .)
+    RLIST           reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .)
+    RPAREN          reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .)
+    CONJUNCTION     shift and go to state 31
+    DISJUNCTION     shift and go to state 32
+    COMPARISON      shift and go to state 33
+    MEMBER          shift and go to state 34
+    EXPONENT        shift and go to state 35
+    PLUS            shift and go to state 36
+    MINUS           shift and go to state 37
+    TIMES           shift and go to state 38
+    DIVIDE          shift and go to state 39
+    INTDIV          shift and go to state 40
+    MODULUS         shift and go to state 41
+    LLIST           shift and go to state 42
+    CONS            shift and go to state 43
+
+  ! CONJUNCTION     [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! DISJUNCTION     [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! COMPARISON      [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! MEMBER          [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! EXPONENT        [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! PLUS            [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! MINUS           [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! TIMES           [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! DIVIDE          [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! INTDIV          [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! MODULUS         [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! LLIST           [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+  ! CONS            [ reduce using rule 14 (expr -> VARIABLE LLIST expr RLIST EQUALS expr .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for LLIST in state 13 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 54 resolved as shift
+WARNING: shift/reduce conflict for CONJUNCTION in state 70 resolved as shift
+WARNING: shift/reduce conflict for DISJUNCTION in state 70 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 70 resolved as shift
+WARNING: shift/reduce conflict for MEMBER in state 70 resolved as shift
+WARNING: shift/reduce conflict for EXPONENT in state 70 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 70 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 70 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 70 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 70 resolved as shift
+WARNING: shift/reduce conflict for INTDIV in state 70 resolved as shift
+WARNING: shift/reduce conflict for MODULUS in state 70 resolved as shift
+WARNING: shift/reduce conflict for LLIST in state 70 resolved as shift
+WARNING: shift/reduce conflict for CONS in state 70 resolved as shift
+WARNING: shift/reduce conflict for CONJUNCTION in state 85 resolved as shift
+WARNING: shift/reduce conflict for DISJUNCTION in state 85 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 85 resolved as shift
+WARNING: shift/reduce conflict for MEMBER in state 85 resolved as shift
+WARNING: shift/reduce conflict for EXPONENT in state 85 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 85 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 85 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 85 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 85 resolved as shift
+WARNING: shift/reduce conflict for INTDIV in state 85 resolved as shift
+WARNING: shift/reduce conflict for MODULUS in state 85 resolved as shift
+WARNING: shift/reduce conflict for LLIST in state 85 resolved as shift
+WARNING: shift/reduce conflict for CONS in state 85 resolved as shift
